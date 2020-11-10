@@ -10,3 +10,9 @@ header {
   background-color: #333533;
   color: #f5cb5c;
 }
+
+.placeholder-text {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
