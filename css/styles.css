@@ -1,7 +1,12 @@
 h1 {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 p {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  background-color: #333533;
+  color: #f5cb5c;
 }
