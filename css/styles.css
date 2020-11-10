@@ -1,6 +1,7 @@
 h1,
 button,
-label {
+label,
+textarea {
   font-family: 'Nunito', sans-serif;
 }
 
