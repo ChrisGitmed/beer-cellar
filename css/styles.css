@@ -20,6 +20,11 @@ button {
   background-color: #f5cb5c;
   color: #333533;
   border: 0;
+  transition: 0.25s;
+}
+
+button:hover {
+  background-color: #ecb726;
 }
 
 .placeholder-text {
