@@ -1,4 +1,5 @@
 h1,
+h2,
 button,
 label,
 textarea {
@@ -8,7 +9,17 @@ textarea {
 p {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  margin: 2rem;
+  margin: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  transition: 0.25s;
+}
+
+a:hover {
+  color: #cfdbd5;
 }
 
 header {
@@ -25,6 +36,10 @@ button {
 
 button:hover {
   background-color: #ecb726;
+}
+
+span {
+  color: #f5cb5c;
 }
 
 .placeholder-text {
@@ -57,4 +72,8 @@ button:hover {
   padding: 0.5rem;
   margin-top: 0.5rem;
   width: 100%;
+}
+
+.yellow-text {
+  color: #f5cb5c;
 }

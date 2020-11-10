@@ -9,9 +9,16 @@
 }
 
 .row {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+
+.col-1 {
+  width: 100%;
+}
+
+.col-2 {
+  width: 50%;
 }
 
 .col-90p {
@@ -24,4 +31,8 @@
 
 .justify-space-between {
   justify-content: space-between;
+}
+
+.extra-margin {
+  margin: 2rem;
 }
