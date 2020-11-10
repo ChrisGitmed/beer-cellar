@@ -1,0 +1,60 @@
+h1,
+button,
+label,
+textarea {
+  font-family: 'Nunito', sans-serif;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  margin: 2rem;
+}
+
+header {
+  background-color: #333533;
+  color: #f5cb5c;
+}
+
+button {
+  background-color: #f5cb5c;
+  color: #333533;
+  border: 0;
+  transition: 0.25s;
+}
+
+button:hover {
+  background-color: #ecb726;
+}
+
+.placeholder-text {
+  margin: 5rem 0;
+}
+
+.big-button {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 20px;
+  font-size: 1.25rem;
+}
+
+.small-button {
+  width: 4rem;
+  height: 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.input-box {
+  background-color: #333533;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.input-area {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
