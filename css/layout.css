@@ -1,16 +1,17 @@
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .container {
-  margin: auto;
-  width: 375px;
-  padding-bottom: 1rem;
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 0 1.5rem 1rem 1.5rem;
 }
 
 .row {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .col-90p {

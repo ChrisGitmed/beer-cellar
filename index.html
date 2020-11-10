@@ -11,29 +11,26 @@
 </head>
 
 <body>
-  <div class="container justify-center">
+  <div class="container">
     <header class="row justify-center">
       <h1>Beer Cellar</h1>
     </header>
 
-    <div class="view-home-empty">
-      <main>
-        <div class="row justify-center">
-          <p class="placeholder-text">Nothing added yet!</p>
-        </div>
-        <div class="row justify-center">
-          <button class="big-button">New</button>
-        </div>
-      </main>
+    <div class="home-empty-view">
+      <div class="row justify-center">
+        <p class="placeholder-text">Nothing added yet!</p>
+      </div>
+      <div class="row justify-center">
+        <button id="big-new-button" class="big-button">New</button>
+      </div>
     </div>
 
-    <div class="view-new-entry hidden">
+    <div class="new-entry-view hidden">
       <div class="row justify-center">
         <p>New Beer!! Add info below.</p>
       </div>
 
-      <form action="">
-
+      <form>
         <div class="row justify-center">
           <div class="input-box col-90p">
             <label for="name">Name</label>
