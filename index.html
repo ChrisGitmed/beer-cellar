@@ -11,22 +11,62 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container justify-center">
     <header class="row justify-center">
       <h1>Beer Cellar</h1>
     </header>
 
-    <main>
+    <div class="view-home-empty">
+      <main>
+        <div class="row justify-center">
+          <p class="placeholder-text">Nothing added yet!</p>
+        </div>
+        <div class="row justify-center">
+          <button class="big-button">New</button>
+        </div>
+      </main>
+    </div>
+
+    <div class="view-new-entry hidden">
       <div class="row justify-center">
-        <p class="placeholder-text">Nothing added yet!</p>
+        <p>New Beer!! Add info below.</p>
       </div>
 
-      <div class="row justify-center">
-        <button class="big-button">New</button>
-      </div>
-    </main>
+      <form action="">
+
+        <div class="row justify-center">
+          <div class="input-box col-90p">
+            <label for="name">Name</label>
+            <input class="input-area" type="text" name="name">
+          </div>
+        </div>
+
+        <div class="row justify-center">
+          <div class="input-box col-90p">
+            <div class="row justify-space-between">
+              <label for="brewery">Brewery (optional)</label>
+              <button class="small-button">Search</button>
+            </div>
+            <input class="input-area" type="text" name="brewery">
+          </div>
+        </div>
+
+        <div class="row justify-center">
+          <div class="input-box col-90p">
+            <label for="notes">Notes</label>
+            <textarea class="input-area" name="notes" rows="10"></textarea>
+          </div>
+        </div>
+
+        <div class="row justify-center">
+          <button class="small-button">Submit</button>
+        </div>
+
+      </form>
+
+    </div>
+
   </div>
-
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

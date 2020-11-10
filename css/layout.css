@@ -1,6 +1,11 @@
+.hidden {
+  display: none;
+}
+
 .container {
   margin: auto;
   width: 375px;
+  padding-bottom: 1rem;
 }
 
 .row {
@@ -8,6 +13,14 @@
   display: flex;
 }
 
+.col-90p {
+  width: 90%;
+}
+
 .justify-center {
   justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
 }
