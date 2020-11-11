@@ -79,3 +79,22 @@ span {
 .yellow-text {
   color: #f5cb5c;
 }
+
+.drop-button {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 160px;
+  color: orange;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.show {
+  display: block;
+}

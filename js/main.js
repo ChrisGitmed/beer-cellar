@@ -1,6 +1,7 @@
 var $bigNewButton = document.querySelector('#big-new-button');
 var $smallNewButton = document.querySelector('#small-new-button');
-var $searchButton = document.querySelector('#search-button');
+var $searchButton = document.querySelector('.drop-button');
+var $dropdownContent = document.querySelector('.dropdown-content');
 var $viewHomeEmpty = document.querySelector('#home-empty-view');
 var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
@@ -11,6 +12,7 @@ $bigNewButton.addEventListener('click', openNewEntryView);
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
+  $dropdownContent.className = 'dropdown-content show';
 });
 
 $form.addEventListener('submit', function (event) {
@@ -30,6 +32,10 @@ document.addEventListener('DOMContentLoaded', checkLoaded);
 window.addEventListener('beforeunload', function (event) {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('beer-cellar', dataJSON);
+});
+
+window.addEventListener('click', function (event) {
+  if (event.target !== $searchButton && event.target !== $dropdownContent) { $dropdownContent.className = 'dropdown-content '; }
 });
 
 function checkLoaded(event) {
