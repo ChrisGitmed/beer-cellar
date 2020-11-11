@@ -1,5 +1,6 @@
 var $bigNewButton = document.querySelector('#big-new-button');
 var $smallNewButton = document.querySelector('#small-new-button');
+var $searchButton = document.querySelector('#search-button');
 var $viewHomeEmpty = document.querySelector('#home-empty-view');
 var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
@@ -8,6 +9,9 @@ var $form = document.querySelector('form');
 $bigNewButton.addEventListener('click', openNewEntryView);
 
 $smallNewButton.addEventListener('click', openNewEntryView);
+
+$searchButton.addEventListener('click', function (event) {
+});
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
