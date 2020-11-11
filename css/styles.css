@@ -1,14 +1,26 @@
 h1,
+h3,
 button,
 label,
 textarea {
   font-family: 'Nunito', sans-serif;
+  resize: none;
 }
 
 p {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  margin: 2rem;
+  margin: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  transition: 0.25s;
+}
+
+a:hover {
+  color: #cfdbd5;
 }
 
 header {
@@ -25,6 +37,10 @@ button {
 
 button:hover {
   background-color: #ecb726;
+}
+
+span {
+  color: #f5cb5c;
 }
 
 .placeholder-text {
@@ -45,7 +61,7 @@ button:hover {
   font-size: 0.9rem;
 }
 
-.input-box {
+.dark-box {
   background-color: #333533;
   color: white;
   padding: 1rem;
@@ -57,4 +73,9 @@ button:hover {
   padding: 0.5rem;
   margin-top: 0.5rem;
   width: 100%;
+  border-radius: 2px;
+}
+
+.yellow-text {
+  color: #f5cb5c;
 }

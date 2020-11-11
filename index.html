@@ -26,20 +26,20 @@
     </div>
 
     <div id="new-entry-view" class="hidden">
-      <div class="row justify-center">
+      <div class="row justify-center extra-margin">
         <p>New Beer!! Add info below.</p>
       </div>
 
       <form>
         <div class="row justify-center">
-          <div class="input-box col-90p">
+          <div class="dark-box col-90p">
             <label for="name">Name (required)</label>
             <input required class="input-area" type="text" name="name">
           </div>
         </div>
 
         <div class="row justify-center">
-          <div class="input-box col-90p">
+          <div class="dark-box col-90p">
             <div class="row justify-space-between">
               <label for="brewery">Brewery</label>
               <button class="small-button">Search</button>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="row justify-center">
-          <div class="input-box col-90p">
+          <div class="dark-box col-90p">
             <label for="notes">Notes</label>
             <textarea class="input-area" name="notes" rows="10"></textarea>
           </div>
@@ -58,11 +58,16 @@
         <div class="row justify-center">
           <button class="small-button">Submit</button>
         </div>
-
       </form>
-
     </div>
 
+    <div id="entries-view" class="hidden">
+      <div class="row justify-center">
+        <button id="small-new-button" class="small-button extra-margin">NEW</button>
+      </div>
+
+
+    </div>
   </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
