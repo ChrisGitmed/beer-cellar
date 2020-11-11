@@ -84,7 +84,7 @@ span {
   position: relative;
 }
 
-.dropdown-content {
+.dropdown-menu {
   display: none;
   position: absolute;
   right: 0;
@@ -95,12 +95,12 @@ span {
   background-color: white;
 }
 
-.dropdown-content p {
+.dropdown-menu p {
   color: #333533;
   transition: 0.2s;
 }
 
-.dropdown-content p:hover {
+.dropdown-menu p:hover {
   background-color: #f5cb5c;
   border-radius: 5px;
 }

@@ -1,18 +1,26 @@
 var $bigNewButton = document.querySelector('#big-new-button');
 var $smallNewButton = document.querySelector('#small-new-button');
 var $searchButton = document.querySelector('.drop-button');
-var $dropdownContent = document.querySelector('.dropdown-content');
 var $viewHomeEmpty = document.querySelector('#home-empty-view');
 var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
+var $dropdownMenu;
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
-  $dropdownContent.className = 'dropdown-content show';
+  $searchButton.appendChild(getDropdownMenuInDOM('test1', 'test2', 'test3'));
+  $dropdownMenu = document.querySelector('.dropdown-menu');
+  $dropdownMenu.className = 'dropdown-menu show';
+});
+
+window.addEventListener('click', function (event) {
+  if (event.target !== $dropdownMenu && event.target !== $searchButton) {
+    $dropdownMenu.className = 'dropdown-menu';
+  }
 });
 
 $form.addEventListener('submit', function (event) {
@@ -32,10 +40,6 @@ document.addEventListener('DOMContentLoaded', checkLoaded);
 window.addEventListener('beforeunload', function (event) {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('beer-cellar', dataJSON);
-});
-
-window.addEventListener('click', function (event) {
-  if (event.target !== $searchButton && event.target !== $dropdownContent) { $dropdownContent.className = 'dropdown-content '; }
 });
 
 function checkLoaded(event) {
@@ -144,7 +148,7 @@ function getBeerObjectInDOM(beerObject) {
 
 function getDropdownMenuInDOM(arg1, arg2, arg3) {
   const $dropMenu = document.createElement('div');
-  $dropMenu.className = 'dropdown-content';
+  $dropMenu.className = 'dropdown-menu';
 
   const $option1 = document.createElement('p');
   $option1.textContent = arg1;
@@ -160,6 +164,3 @@ function getDropdownMenuInDOM(arg1, arg2, arg3) {
 
   return $dropMenu;
 }
-
-// To avoid linter
-getDropdownMenuInDOM('test1', 'test2', 'test3');
