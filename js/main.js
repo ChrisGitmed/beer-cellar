@@ -141,3 +141,25 @@ function getBeerObjectInDOM(beerObject) {
   }
   return $newEntryRow;
 }
+
+function getDropdownMenuInDOM(arg1, arg2, arg3) {
+  const $dropMenu = document.createElement('div');
+  $dropMenu.className = 'dropdown-content';
+
+  const $option1 = document.createElement('p');
+  $option1.textContent = arg1;
+  $dropMenu.appendChild($option1);
+
+  const $option2 = document.createElement('p');
+  $option2.textContent = arg2;
+  $dropMenu.appendChild($option2);
+
+  const $option3 = document.createElement('p');
+  $option3.textContent = arg3;
+  $dropMenu.appendChild($option3);
+
+  return $dropMenu;
+}
+
+// To avoid linter
+getDropdownMenuInDOM('test1', 'test2', 'test3');
