@@ -1,9 +1,10 @@
 h1,
-h2,
+h3,
 button,
 label,
 textarea {
   font-family: 'Nunito', sans-serif;
+  resize: none;
 }
 
 p {
@@ -72,6 +73,7 @@ span {
   padding: 0.5rem;
   margin-top: 0.5rem;
   width: 100%;
+  border-radius: 2px;
 }
 
 .yellow-text {

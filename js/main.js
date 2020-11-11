@@ -1,13 +1,13 @@
 var $bigNewButton = document.querySelector('#big-new-button');
+var $smallNewButton = document.querySelector('#small-new-button');
 var $viewHomeEmpty = document.querySelector('#home-empty-view');
 var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
 
-$bigNewButton.addEventListener('click', function (event) {
-  $viewHomeEmpty.className = 'home-empty-view hidden';
-  $viewNewEntry.className = 'new-entry-view';
-});
+$bigNewButton.addEventListener('click', openNewEntryView);
+
+$smallNewButton.addEventListener('click', openNewEntryView);
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -16,13 +16,48 @@ $form.addEventListener('submit', function (event) {
   newBeer.brewery = $form.elements.brewery.value;
   newBeer.notes = $form.elements.notes.value;
   data.beers.push(newBeer);
+  $viewEntries.appendChild(getBeerObjectInDOM(newBeer));
   $form.reset();
+  openHomeView();
 });
+
+document.addEventListener('DOMContentLoaded', checkLoaded);
 
 window.addEventListener('beforeunload', function (event) {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('beer-cellar', dataJSON);
 });
+
+function checkLoaded(event) {
+  const cellarList = localStorage.getItem('beer-cellar');
+  if (cellarList !== null) {
+    data = JSON.parse(cellarList);
+  }
+
+  if (data.beers.length !== 0) {
+    $viewHomeEmpty.className = 'hidden';
+    $viewEntries.className = '';
+    for (let i = 0; i < data.beers.length; i++) {
+      $viewEntries.appendChild(getBeerObjectInDOM(data.beers[i]));
+    }
+  }
+}
+
+function openNewEntryView(event) {
+  $viewHomeEmpty.className = 'hidden';
+  $viewEntries.className = 'hidden';
+  $viewNewEntry.className = '';
+}
+
+function openHomeView() {
+  if (data.beers.length > 0) {
+    $viewEntries.className = '';
+    $viewNewEntry.className = 'hidden';
+  } else {
+    $viewHomeEmpty.className = '';
+    $viewNewEntry.className = 'hidden';
+  }
+}
 
 function getBeerObjectInDOM(beerObject) {
   const $newEntryRow = document.createElement('div');
@@ -36,9 +71,8 @@ function getBeerObjectInDOM(beerObject) {
   $newEntryHeader.setAttribute('class', 'row justify-center');
   $entryBox.appendChild($newEntryHeader);
 
-  const $newEntryHeaderText = document.createElement('h2');
+  const $newEntryHeaderText = document.createElement('h3');
   $newEntryHeaderText.textContent = beerObject.name;
-  // Fix here ^^^
   $newEntryHeader.appendChild($newEntryHeaderText);
 
   if (beerObject.brewery !== '') {
@@ -81,7 +115,6 @@ function getBeerObjectInDOM(beerObject) {
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);
   }
-
   if (beerObject.notes !== '') {
     const $notesRow = document.createElement('div');
     $notesRow.setAttribute('class', 'row');
@@ -97,21 +130,4 @@ function getBeerObjectInDOM(beerObject) {
     $notesRow.appendChild($notesText);
   }
   return $newEntryRow;
-}
-
-document.addEventListener('DOMContentLoaded', checkLoaded);
-
-function checkLoaded(event) {
-  const cellarList = localStorage.getItem('beer-cellar');
-  if (cellarList !== null) {
-    data = JSON.parse(cellarList);
-  }
-  if (data.beers.length !== 0) {
-    $viewHomeEmpty.className = 'hidden';
-    $viewEntries.className = '';
-    for (let i = 0; i < data.beers.length; i++) {
-      $viewEntries.appendChild(getBeerObjectInDOM(data.beers[i]));
-    }
-  }
-
 }
