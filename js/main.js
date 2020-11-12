@@ -14,16 +14,18 @@ $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
   if ($breweryInput.value.length > 0) {
-    queryAPI();
+    const matches = getBreweryMatches();
+    $searchButton.appendChild(getDropdownMenuInDOM(matches));
+    $dropdownMenu = document.querySelector('.dropdown-menu');
+    $dropdownMenu.className = 'dropdown-menu show';
   }
-  $searchButton.appendChild(getDropdownMenuInDOM('test1', 'test2', 'test3'));
-  $dropdownMenu = document.querySelector('.dropdown-menu');
-  $dropdownMenu.className = 'dropdown-menu show';
 });
 
 window.addEventListener('click', function (event) {
-  if (event.target !== $dropdownMenu && event.target !== $searchButton) {
-    $dropdownMenu.className = 'dropdown-menu';
+  if ($viewNewEntry.className !== 'hidden') {
+    if (event.target !== $dropdownMenu && event.target !== $searchButton) {
+      $dropdownMenu.className = 'dropdown-menu';
+    }
   }
 });
 
@@ -150,26 +152,26 @@ function getBeerObjectInDOM(beerObject) {
   return $newEntryRow;
 }
 
-function getDropdownMenuInDOM(arg1, arg2, arg3) {
+function getDropdownMenuInDOM(matches) {
   const $dropMenu = document.createElement('div');
   $dropMenu.className = 'dropdown-menu';
 
   const $option1 = document.createElement('p');
-  $option1.textContent = arg1;
+  $option1.textContent = 'test1';
   $dropMenu.appendChild($option1);
 
   const $option2 = document.createElement('p');
-  $option2.textContent = arg2;
+  $option2.textContent = 'test2';
   $dropMenu.appendChild($option2);
 
   const $option3 = document.createElement('p');
-  $option3.textContent = arg3;
+  $option3.textContent = 'test3';
   $dropMenu.appendChild($option3);
 
   return $dropMenu;
 }
 
-function queryAPI() {
+function getBreweryMatches() {
   const xhr = new XMLHttpRequest();
   const breweryList = [];
 
@@ -179,7 +181,7 @@ function queryAPI() {
     for (let i = 0; i < 3; i++) {
       breweryList.push(xhr.response[i]);
     }
-    return breweryList;
   });
   xhr.send();
+  return breweryList;
 }
