@@ -8,7 +8,7 @@ var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
 var $dropdownMenu;
 var matches = [];
-var breweryData = {};
+var breweryData;
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
@@ -34,7 +34,7 @@ $form.addEventListener('submit', function (event) {
   event.preventDefault();
   const newBeer = {};
   newBeer.name = $form.elements.name.value;
-  newBeer.brewery = $form.elements.brewery.value;
+  newBeer.brewery = breweryData;
   newBeer.notes = $form.elements.notes.value;
   data.beers.push(newBeer);
   $viewEntries.appendChild(getBeerObjectInDOM(newBeer));
@@ -109,7 +109,7 @@ function getBeerObjectInDOM(beerObject) {
     const $brewerHeading = document.createElement('span');
     $brewerHeading.textContent = 'Brewery: ';
     $brewerText.appendChild($brewerHeading);
-    $brewerText.append(beerObject.brewery); // Make this reflect API data
+    $brewerText.append(beerObject.brewery.name); // Make this reflect API data
     $brewerColumn.appendChild($brewerText);
 
     const $cityColumn = document.createElement('div');
@@ -120,7 +120,7 @@ function getBeerObjectInDOM(beerObject) {
     const $cityHeading = document.createElement('span');
     $cityHeading.textContent = 'City: ';
     $cityText.appendChild($cityHeading);
-    $cityText.append(beerObject.city); // Make this reflect API data
+    $cityText.append(beerObject.brewery.city); // Make this reflect API data
     $cityColumn.appendChild($cityText);
 
     const $websiteRow = document.createElement('div');
@@ -131,8 +131,8 @@ function getBeerObjectInDOM(beerObject) {
     const $webLink = document.createElement('a');
     $websiteText.setAttribute('class', 'yellow-text');
     $websiteText.textContent = 'Website: ';
-    $webLink.setAttribute('href', beerObject.url); // Make this reflect API data
-    $webLink.textContent = 'modertimes.com';
+    $webLink.setAttribute('href', beerObject.brewery.website_url); // Make this reflect API data
+    $webLink.textContent = beerObject.brewery.website_url;
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);
   }
@@ -150,6 +150,7 @@ function getBeerObjectInDOM(beerObject) {
     $notesText.append(beerObject.notes);
     $notesRow.appendChild($notesText);
   }
+  beerObject.brewery = '';
   return $newEntryRow;
 }
 
