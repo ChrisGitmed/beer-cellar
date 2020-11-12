@@ -96,7 +96,7 @@ function getBeerObjectInDOM(beerObject) {
   $newEntryHeaderText.textContent = beerObject.name;
   $newEntryHeader.appendChild($newEntryHeaderText);
 
-  if (beerObject.brewery !== '') {
+  if (breweryData !== undefined) {
     const $newBrewerCityRow = document.createElement('div');
     $newBrewerCityRow.setAttribute('class', 'row');
     $entryBox.appendChild($newBrewerCityRow);
@@ -150,7 +150,7 @@ function getBeerObjectInDOM(beerObject) {
     $notesText.append(beerObject.notes);
     $notesRow.appendChild($notesText);
   }
-  beerObject.brewery = '';
+  breweryData = undefined;
   return $newEntryRow;
 }
 
