@@ -96,7 +96,7 @@ function getBeerEntryInDOM(beerObject) {
   $newDeleteButton.setAttribute('type', 'button');
   $newDeleteButton.setAttribute('class', 'delete-button');
   $newDeleteButton.addEventListener('click', function (event) {
-
+    $newEntryRow.remove();
   });
   $newDeleteButtonRow.appendChild($newDeleteButton);
 
