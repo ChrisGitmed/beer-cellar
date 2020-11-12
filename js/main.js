@@ -95,8 +95,12 @@ function getBeerEntryInDOM(beerObject) {
   const $newDeleteButton = document.createElement('button');
   $newDeleteButton.setAttribute('type', 'button');
   $newDeleteButton.setAttribute('class', 'delete-button');
-  $newDeleteButton.textContent = 'X';
   $newDeleteButtonRow.appendChild($newDeleteButton);
+
+  const $icon = document.createElement('i');
+  $icon.setAttribute('class', 'fa fa-times');
+  $icon.setAttribute('aria-hidden', 'true');
+  $newDeleteButton.appendChild($icon);
 
   const $newEntryHeader = document.createElement('div');
   $newEntryHeader.setAttribute('class', 'row justify-center');
