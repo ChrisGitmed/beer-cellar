@@ -4,7 +4,6 @@ button,
 label,
 textarea {
   font-family: 'Nunito', sans-serif;
-  resize: none;
 }
 
 h3 {
@@ -45,6 +44,10 @@ button:hover {
 
 span {
   color: #f5cb5c;
+}
+
+textarea {
+  resize: none;
 }
 
 .placeholder-text {
