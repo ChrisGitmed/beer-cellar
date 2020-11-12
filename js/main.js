@@ -37,7 +37,7 @@ $form.addEventListener('submit', function (event) {
   newBeer.brewery = breweryData;
   newBeer.notes = $form.elements.notes.value;
   data.beers.push(newBeer);
-  $viewEntries.appendChild(getBeerObjectInDOM(newBeer));
+  $viewEntries.appendChild(getBeerEntryInDOM(newBeer));
   $form.reset();
   openHomeView();
 });
@@ -59,7 +59,7 @@ function checkLoaded(event) {
     $viewHomeEmpty.className = 'hidden';
     $viewEntries.className = '';
     for (let i = 0; i < data.beers.length; i++) {
-      $viewEntries.appendChild(getBeerObjectInDOM(data.beers[i]));
+      $viewEntries.appendChild(getBeerEntryInDOM(data.beers[i]));
     }
   }
 }
@@ -80,7 +80,7 @@ function openHomeView() {
   }
 }
 
-function getBeerObjectInDOM(beerObject) {
+function getBeerEntryInDOM(beerObject) {
   const $newEntryRow = document.createElement('div');
   $newEntryRow.setAttribute('class', 'row justify-center');
 
@@ -109,7 +109,7 @@ function getBeerObjectInDOM(beerObject) {
     const $brewerHeading = document.createElement('span');
     $brewerHeading.textContent = 'Brewery: ';
     $brewerText.appendChild($brewerHeading);
-    $brewerText.append(beerObject.brewery.name); // Make this reflect API data
+    $brewerText.append(beerObject.brewery.name);
     $brewerColumn.appendChild($brewerText);
 
     const $cityColumn = document.createElement('div');
@@ -120,7 +120,7 @@ function getBeerObjectInDOM(beerObject) {
     const $cityHeading = document.createElement('span');
     $cityHeading.textContent = 'City: ';
     $cityText.appendChild($cityHeading);
-    $cityText.append(beerObject.brewery.city); // Make this reflect API data
+    $cityText.append(beerObject.brewery.city);
     $cityColumn.appendChild($cityText);
 
     const $websiteRow = document.createElement('div');
@@ -131,7 +131,7 @@ function getBeerObjectInDOM(beerObject) {
     const $webLink = document.createElement('a');
     $websiteText.setAttribute('class', 'yellow-text');
     $websiteText.textContent = 'Website: ';
-    $webLink.setAttribute('href', beerObject.brewery.website_url); // Make this reflect API data
+    $webLink.setAttribute('href', beerObject.brewery.website_url);
     $webLink.textContent = beerObject.brewery.website_url;
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);

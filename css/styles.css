@@ -108,3 +108,7 @@ span {
 .show {
   display: block;
 }
+
+.blue-background {
+  background-color: #cfdbd5;
+}
