@@ -33,6 +33,10 @@
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .extra-margin {
   margin: 2rem;
 }
