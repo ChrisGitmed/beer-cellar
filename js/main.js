@@ -200,9 +200,7 @@ function getBreweryMatches() {
 function getBreweryData(event) {
   for (let i = 0; i < matches.length; i++) {
     if (event.target.textContent === matches[i].name) {
-      breweryData.name = matches[i].name;
-      breweryData.city = matches[i].city;
-      breweryData.url = matches[i].website_url;
+      breweryData = matches[i];
       $breweryInput.value = breweryData.name;
     }
   }
