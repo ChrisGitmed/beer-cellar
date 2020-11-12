@@ -8,20 +8,23 @@ var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
 var $dropdownMenu;
 var matches = [];
+var breweryData = {};
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
-  if ($breweryInput.value.length > 0) {
-    getBreweryMatches();
+  if (event.target.tagName === 'BUTTON') {
+    if ($breweryInput.value.length > 0) {
+      getBreweryMatches();
+    }
   }
 });
 
 window.addEventListener('click', function (event) {
   if ($viewNewEntry.className !== 'hidden') {
-    if (event.target !== $dropdownMenu && event.target !== $searchButton) {
+    if (event.target !== $dropdownMenu) {
       $dropdownMenu.className = 'dropdown-menu';
     }
   }
@@ -160,6 +163,7 @@ function getDropdownMenuInDOM() {
         var $newOption = document.createElement('p');
         $newOption.textContent = matches[i].name;
         $dropdownMenu.appendChild($newOption);
+        $newOption.addEventListener('click', getBreweryData);
       }
     }
   } else {
@@ -170,6 +174,7 @@ function getDropdownMenuInDOM() {
         $newOption = document.createElement('p');
         $newOption.textContent = matches[x].name;
         $dropdownMenu.appendChild($newOption);
+        $newOption.addEventListener('click', getBreweryData);
       }
     }
   }
@@ -190,4 +195,15 @@ function getBreweryMatches() {
     $dropdownMenu.className = 'dropdown-menu show';
   });
   xhr.send();
+}
+
+function getBreweryData(event) {
+  for (let i = 0; i < matches.length; i++) {
+    if (event.target.textContent === matches[i].name) {
+      breweryData.name = matches[i].name;
+      breweryData.city = matches[i].city;
+      breweryData.url = matches[i].website_url;
+      $breweryInput.value = breweryData.name;
+    }
+  }
 }
