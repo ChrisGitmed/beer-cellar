@@ -1,6 +1,7 @@
 var $bigNewButton = document.querySelector('#big-new-button');
 var $smallNewButton = document.querySelector('#small-new-button');
 var $searchButton = document.querySelector('.drop-button');
+var $breweryInput = document.querySelector('#brewery-input');
 var $viewHomeEmpty = document.querySelector('#home-empty-view');
 var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
@@ -12,6 +13,9 @@ $bigNewButton.addEventListener('click', openNewEntryView);
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
+  if ($breweryInput.value.length > 0) {
+    queryAPI();
+  }
   $searchButton.appendChild(getDropdownMenuInDOM('test1', 'test2', 'test3'));
   $dropdownMenu = document.querySelector('.dropdown-menu');
   $dropdownMenu.className = 'dropdown-menu show';
@@ -163,4 +167,19 @@ function getDropdownMenuInDOM(arg1, arg2, arg3) {
   $dropMenu.appendChild($option3);
 
   return $dropMenu;
+}
+
+function queryAPI() {
+  const xhr = new XMLHttpRequest();
+  const breweryList = [];
+
+  xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (let i = 0; i < 3; i++) {
+      breweryList.push(xhr.response[i]);
+    }
+    return breweryList;
+  });
+  xhr.send();
 }
