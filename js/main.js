@@ -37,7 +37,7 @@ $form.addEventListener('submit', function (event) {
   newBeer.brewery = breweryData;
   newBeer.notes = $form.elements.notes.value;
   data.beers.push(newBeer);
-  $viewEntries.appendChild(getBeerObjectInDOM(newBeer));
+  $viewEntries.appendChild(getBeerEntryInDOM(newBeer));
   $form.reset();
   openHomeView();
 });
@@ -59,7 +59,7 @@ function checkLoaded(event) {
     $viewHomeEmpty.className = 'hidden';
     $viewEntries.className = '';
     for (let i = 0; i < data.beers.length; i++) {
-      $viewEntries.appendChild(getBeerObjectInDOM(data.beers[i]));
+      $viewEntries.appendChild(getBeerEntryInDOM(data.beers[i]));
     }
   }
 }
@@ -80,13 +80,37 @@ function openHomeView() {
   }
 }
 
-function getBeerObjectInDOM(beerObject) {
+function getBeerEntryInDOM(beerObject) {
   const $newEntryRow = document.createElement('div');
   $newEntryRow.setAttribute('class', 'row justify-center');
 
   const $entryBox = document.createElement('div');
   $entryBox.setAttribute('class', 'dark-box col-90p');
   $newEntryRow.appendChild($entryBox);
+
+  const $newDeleteButtonRow = document.createElement('div');
+  $newDeleteButtonRow.setAttribute('class', 'row justify-end');
+  $entryBox.appendChild($newDeleteButtonRow);
+
+  const $newDeleteButton = document.createElement('button');
+  $newDeleteButton.setAttribute('type', 'button');
+  $newDeleteButton.setAttribute('class', 'delete-button');
+  $newDeleteButton.addEventListener('click', function (event) {
+    for (let i = 0; i < data.beers.length; i++) {
+      if (data.beers[i].name === $newEntryHeaderText.textContent) {
+        data.beers.splice(i, 1);
+      }
+    }
+    $newEntryRow.remove();
+
+    localStorage.setItem('beer-cellar', JSON.stringify(data));
+  });
+  $newDeleteButtonRow.appendChild($newDeleteButton);
+
+  const $icon = document.createElement('i');
+  $icon.setAttribute('class', 'fa fa-times');
+  $icon.setAttribute('aria-hidden', 'true');
+  $newDeleteButton.appendChild($icon);
 
   const $newEntryHeader = document.createElement('div');
   $newEntryHeader.setAttribute('class', 'row justify-center');
@@ -96,7 +120,7 @@ function getBeerObjectInDOM(beerObject) {
   $newEntryHeaderText.textContent = beerObject.name;
   $newEntryHeader.appendChild($newEntryHeaderText);
 
-  if (breweryData !== undefined) {
+  if (beerObject.brewery !== undefined) {
     const $newBrewerCityRow = document.createElement('div');
     $newBrewerCityRow.setAttribute('class', 'row');
     $entryBox.appendChild($newBrewerCityRow);
@@ -109,7 +133,7 @@ function getBeerObjectInDOM(beerObject) {
     const $brewerHeading = document.createElement('span');
     $brewerHeading.textContent = 'Brewery: ';
     $brewerText.appendChild($brewerHeading);
-    $brewerText.append(beerObject.brewery.name); // Make this reflect API data
+    $brewerText.append(beerObject.brewery.name);
     $brewerColumn.appendChild($brewerText);
 
     const $cityColumn = document.createElement('div');
@@ -120,7 +144,7 @@ function getBeerObjectInDOM(beerObject) {
     const $cityHeading = document.createElement('span');
     $cityHeading.textContent = 'City: ';
     $cityText.appendChild($cityHeading);
-    $cityText.append(beerObject.brewery.city); // Make this reflect API data
+    $cityText.append(beerObject.brewery.city);
     $cityColumn.appendChild($cityText);
 
     const $websiteRow = document.createElement('div');
@@ -131,7 +155,7 @@ function getBeerObjectInDOM(beerObject) {
     const $webLink = document.createElement('a');
     $websiteText.setAttribute('class', 'yellow-text');
     $websiteText.textContent = 'Website: ';
-    $webLink.setAttribute('href', beerObject.brewery.website_url); // Make this reflect API data
+    $webLink.setAttribute('href', beerObject.brewery.website_url);
     $webLink.textContent = beerObject.brewery.website_url;
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);
@@ -200,9 +224,11 @@ function getBreweryMatches() {
 
 function getBreweryData(event) {
   for (let i = 0; i < matches.length; i++) {
-    if (event.target.textContent === matches[i].name) {
-      breweryData = matches[i];
-      $breweryInput.value = breweryData.name;
+    if (matches[i] !== undefined) {
+      if (event.target.textContent === matches[i].name) {
+        breweryData = matches[i];
+        $breweryInput.value = breweryData.name;
+      }
     }
   }
 }

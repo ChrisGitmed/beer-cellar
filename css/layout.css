@@ -33,6 +33,14 @@
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
+.text-align {
+  text-align: center;
+}
+
 .extra-margin {
   margin: 2rem;
 }

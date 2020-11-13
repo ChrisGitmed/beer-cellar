@@ -4,7 +4,10 @@ button,
 label,
 textarea {
   font-family: 'Nunito', sans-serif;
-  resize: none;
+}
+
+h3 {
+  margin-top: 0;
 }
 
 p {
@@ -43,6 +46,10 @@ span {
   color: #f5cb5c;
 }
 
+textarea {
+  resize: none;
+}
+
 .placeholder-text {
   margin: 5rem 0;
 }
@@ -59,6 +66,13 @@ span {
   height: 1.5rem;
   border-radius: 10px;
   font-size: 0.9rem;
+}
+
+.delete-button {
+  background-color: #cfdbd5;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5px;
 }
 
 .dark-box {
