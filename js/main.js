@@ -223,9 +223,11 @@ function getBreweryMatches() {
 
 function getBreweryData(event) {
   for (let i = 0; i < matches.length; i++) {
-    if (event.target.textContent === matches[i].name) {
-      breweryData = matches[i];
-      $breweryInput.value = breweryData.name;
+    if (matches[i] !== undefined) {
+      if (event.target.textContent === matches[i].name) {
+        breweryData = matches[i];
+        $breweryInput.value = breweryData.name;
+      }
     }
   }
 }
