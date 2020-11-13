@@ -45,8 +45,7 @@ $form.addEventListener('submit', function (event) {
 document.addEventListener('DOMContentLoaded', checkLoaded);
 
 window.addEventListener('beforeunload', function (event) {
-  const dataJSON = JSON.stringify(data);
-  localStorage.setItem('beer-cellar', dataJSON);
+  localStorage.setItem('beer-cellar', JSON.stringify(data));
 });
 
 function checkLoaded(event) {
