@@ -181,39 +181,30 @@ function getDropdownMenuInDOM() {
     while ($dropdownMenu.firstChild) {
       $dropdownMenu.removeChild($dropdownMenu.firstChild);
     }
-    if (matches[0] === undefined) {
-      var $tryAgainText = document.createElement('p');
-      $tryAgainText.textContent = 'No matches found.';
-      $dropdownMenu.appendChild($tryAgainText);
-    } else {
-      for (let i = 0; i < 3; i++) {
-        if (matches[i] !== undefined) {
-          var $newOption = document.createElement('p');
-          $newOption.textContent = matches[i].name;
-          $dropdownMenu.appendChild($newOption);
-          $newOption.addEventListener('click', getBreweryData);
-        }
-      }
-    }
+    getDropdownOptionsInDOM();
   } else {
     $dropdownMenu = document.createElement('div');
     $dropdownMenu.className = 'dropdown-menu';
-    if (matches[0] === undefined) {
-      $tryAgainText = document.createElement('p');
-      $tryAgainText.textContent = 'No matches found.';
-      $dropdownMenu.appendChild($tryAgainText);
-    } else {
-      for (let x = 0; x < 3; x++) {
-        if (matches[x] !== undefined) {
-          $newOption = document.createElement('p');
-          $newOption.textContent = matches[x].name;
-          $dropdownMenu.appendChild($newOption);
-          $newOption.addEventListener('click', getBreweryData);
-        }
+    getDropdownOptionsInDOM();
+  }
+  return $dropdownMenu;
+}
+
+function getDropdownOptionsInDOM() {
+  if (matches[0] === undefined) {
+    const $tryAgainText = document.createElement('p');
+    $tryAgainText.textContent = 'No matches found.';
+    $dropdownMenu.appendChild($tryAgainText);
+  } else {
+    for (let i = 0; i < 3; i++) {
+      if (matches[i] !== undefined) {
+        const $newOption = document.createElement('p');
+        $newOption.textContent = matches[i].name;
+        $dropdownMenu.appendChild($newOption);
+        $newOption.addEventListener('click', getBreweryData);
       }
     }
   }
-  return $dropdownMenu;
 }
 
 function getBreweryMatches() {
