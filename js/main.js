@@ -87,16 +87,16 @@ function getBeerEntryInDOM(beerObject) {
   $entryBox.setAttribute('class', 'dark-box col-90p');
   $newEntryRow.appendChild($entryBox);
 
-  const $newDeleteButtonRow = document.createElement('div');
-  $newDeleteButtonRow.setAttribute('class', 'row justify-end');
-  $entryBox.appendChild($newDeleteButtonRow);
+  const $deleteButtonRow = document.createElement('div');
+  $deleteButtonRow.setAttribute('class', 'row justify-end');
+  $entryBox.appendChild($deleteButtonRow);
 
-  const $newDeleteButton = document.createElement('button');
-  $newDeleteButton.setAttribute('type', 'button');
-  $newDeleteButton.setAttribute('class', 'delete-button');
-  $newDeleteButton.addEventListener('click', function (event) {
+  const $deleteButton = document.createElement('button');
+  $deleteButton.setAttribute('type', 'button');
+  $deleteButton.setAttribute('class', 'delete-button');
+  $deleteButton.addEventListener('click', function (event) {
     for (let i = 0; i < data.beers.length; i++) {
-      if (data.beers[i].name === $newEntryHeaderText.textContent) {
+      if (data.beers[i].name === $entryHeaderText.textContent) {
         data.beers.splice(i, 1);
       }
     }
@@ -104,29 +104,29 @@ function getBeerEntryInDOM(beerObject) {
 
     localStorage.setItem('beer-cellar', JSON.stringify(data));
   });
-  $newDeleteButtonRow.appendChild($newDeleteButton);
+  $deleteButtonRow.appendChild($deleteButton);
 
   const $icon = document.createElement('i');
   $icon.setAttribute('class', 'fa fa-times');
   $icon.setAttribute('aria-hidden', 'true');
-  $newDeleteButton.appendChild($icon);
+  $deleteButton.appendChild($icon);
 
-  const $newEntryHeader = document.createElement('div');
-  $newEntryHeader.setAttribute('class', 'row justify-center');
-  $entryBox.appendChild($newEntryHeader);
+  const $entryHeader = document.createElement('div');
+  $entryHeader.setAttribute('class', 'row justify-center');
+  $entryBox.appendChild($entryHeader);
 
-  const $newEntryHeaderText = document.createElement('h3');
-  $newEntryHeaderText.textContent = beerObject.name;
-  $newEntryHeader.appendChild($newEntryHeaderText);
+  const $entryHeaderText = document.createElement('h3');
+  $entryHeaderText.textContent = beerObject.name;
+  $entryHeader.appendChild($entryHeaderText);
 
   if (beerObject.brewery !== undefined) {
-    const $newBrewerCityRow = document.createElement('div');
-    $newBrewerCityRow.setAttribute('class', 'row');
-    $entryBox.appendChild($newBrewerCityRow);
+    const $brewerCityRow = document.createElement('div');
+    $brewerCityRow.setAttribute('class', 'row');
+    $entryBox.appendChild($brewerCityRow);
 
     const $brewerColumn = document.createElement('div');
     $brewerColumn.setAttribute('class', 'col-2');
-    $newBrewerCityRow.appendChild($brewerColumn);
+    $brewerCityRow.appendChild($brewerColumn);
 
     const $brewerText = document.createElement('p');
     const $brewerHeading = document.createElement('span');
@@ -137,7 +137,7 @@ function getBeerEntryInDOM(beerObject) {
 
     const $cityColumn = document.createElement('div');
     $cityColumn.setAttribute('class', 'col-2');
-    $newBrewerCityRow.appendChild($cityColumn);
+    $brewerCityRow.appendChild($cityColumn);
 
     const $cityText = document.createElement('p');
     const $cityHeading = document.createElement('span');
