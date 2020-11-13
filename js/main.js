@@ -96,7 +96,13 @@ function getBeerEntryInDOM(beerObject) {
   $newDeleteButton.setAttribute('type', 'button');
   $newDeleteButton.setAttribute('class', 'delete-button');
   $newDeleteButton.addEventListener('click', function (event) {
+    for (let i = 0; i < data.beers.length; i++) {
+      if (data.beers[i].name === $newEntryHeaderText.textContent) {
+        data.beers.splice(i, 1);
+      }
+    }
     $newEntryRow.remove();
+    localStorage.setItem('beer-cellar', JSON.stringify(data));
   });
   $newDeleteButtonRow.appendChild($newDeleteButton);
 
