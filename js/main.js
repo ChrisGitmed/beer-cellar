@@ -209,7 +209,6 @@ function getDropdownOptionsInDOM() {
 
 function getBreweryMatches() {
   const xhr = new XMLHttpRequest();
-
   xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
