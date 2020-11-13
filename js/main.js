@@ -102,6 +102,7 @@ function getBeerEntryInDOM(beerObject) {
       }
     }
     $newEntryRow.remove();
+
     localStorage.setItem('beer-cellar', JSON.stringify(data));
   });
   $newDeleteButtonRow.appendChild($newDeleteButton);
@@ -119,7 +120,7 @@ function getBeerEntryInDOM(beerObject) {
   $newEntryHeaderText.textContent = beerObject.name;
   $newEntryHeader.appendChild($newEntryHeaderText);
 
-  if (breweryData !== undefined) {
+  if (beerObject.brewery !== undefined) {
     const $newBrewerCityRow = document.createElement('div');
     $newBrewerCityRow.setAttribute('class', 'row');
     $entryBox.appendChild($newBrewerCityRow);
