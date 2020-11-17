@@ -217,19 +217,21 @@ function getBreweryMatches() {
   xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
   xhr.responseType = 'json';
   xhr.addEventListener('error', function () {
-    $searchButton.appendChild(getDropdownMenuInDOM());
-    $dropdownMenu = document.querySelector('.dropdown-menu');
-    $dropdownMenu.className = 'dropdown-menu show';
+    createDropdown();
   });
   xhr.addEventListener('load', function () {
     for (let i = 0; i < 3; i++) {
       matches[i] = (xhr.response[i]);
     }
-    $searchButton.appendChild(getDropdownMenuInDOM());
-    $dropdownMenu = document.querySelector('.dropdown-menu');
-    $dropdownMenu.className = 'dropdown-menu show';
+    createDropdown();
   });
   xhr.send();
+}
+
+function createDropdown() {
+  $searchButton.appendChild(getDropdownMenuInDOM());
+  $dropdownMenu = document.querySelector('.dropdown-menu');
+  $dropdownMenu.className = 'dropdown-menu show';
 }
 
 function getBreweryData(event) {
