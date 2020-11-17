@@ -45,8 +45,7 @@ $form.addEventListener('submit', function (event) {
 document.addEventListener('DOMContentLoaded', checkLoaded);
 
 window.addEventListener('beforeunload', function (event) {
-  const dataJSON = JSON.stringify(data);
-  localStorage.setItem('beer-cellar', dataJSON);
+  localStorage.setItem('beer-cellar', JSON.stringify(data));
 });
 
 function checkLoaded(event) {
@@ -88,46 +87,45 @@ function getBeerEntryInDOM(beerObject) {
   $entryBox.setAttribute('class', 'dark-box col-90p');
   $newEntryRow.appendChild($entryBox);
 
-  const $newDeleteButtonRow = document.createElement('div');
-  $newDeleteButtonRow.setAttribute('class', 'row justify-end');
-  $entryBox.appendChild($newDeleteButtonRow);
+  const $deleteButtonRow = document.createElement('div');
+  $deleteButtonRow.setAttribute('class', 'row justify-end');
+  $entryBox.appendChild($deleteButtonRow);
 
-  const $newDeleteButton = document.createElement('button');
-  $newDeleteButton.setAttribute('type', 'button');
-  $newDeleteButton.setAttribute('class', 'delete-button');
-  $newDeleteButton.addEventListener('click', function (event) {
+  const $deleteButton = document.createElement('button');
+  $deleteButton.setAttribute('type', 'button');
+  $deleteButton.setAttribute('class', 'delete-button');
+  $deleteButton.addEventListener('click', function (event) {
     for (let i = 0; i < data.beers.length; i++) {
-      if (data.beers[i].name === $newEntryHeaderText.textContent) {
+      if (data.beers[i].name === $entryHeaderText.textContent) {
         data.beers.splice(i, 1);
       }
     }
     $newEntryRow.remove();
-
     localStorage.setItem('beer-cellar', JSON.stringify(data));
   });
-  $newDeleteButtonRow.appendChild($newDeleteButton);
+  $deleteButtonRow.appendChild($deleteButton);
 
   const $icon = document.createElement('i');
   $icon.setAttribute('class', 'fa fa-times');
   $icon.setAttribute('aria-hidden', 'true');
-  $newDeleteButton.appendChild($icon);
+  $deleteButton.appendChild($icon);
 
-  const $newEntryHeader = document.createElement('div');
-  $newEntryHeader.setAttribute('class', 'row justify-center');
-  $entryBox.appendChild($newEntryHeader);
+  const $entryHeader = document.createElement('div');
+  $entryHeader.setAttribute('class', 'row justify-center');
+  $entryBox.appendChild($entryHeader);
 
-  const $newEntryHeaderText = document.createElement('h3');
-  $newEntryHeaderText.textContent = beerObject.name;
-  $newEntryHeader.appendChild($newEntryHeaderText);
+  const $entryHeaderText = document.createElement('h3');
+  $entryHeaderText.textContent = beerObject.name;
+  $entryHeader.appendChild($entryHeaderText);
 
   if (beerObject.brewery !== undefined) {
-    const $newBrewerCityRow = document.createElement('div');
-    $newBrewerCityRow.setAttribute('class', 'row');
-    $entryBox.appendChild($newBrewerCityRow);
+    const $brewerCityRow = document.createElement('div');
+    $brewerCityRow.setAttribute('class', 'row');
+    $entryBox.appendChild($brewerCityRow);
 
     const $brewerColumn = document.createElement('div');
     $brewerColumn.setAttribute('class', 'col-2');
-    $newBrewerCityRow.appendChild($brewerColumn);
+    $brewerCityRow.appendChild($brewerColumn);
 
     const $brewerText = document.createElement('p');
     const $brewerHeading = document.createElement('span');
@@ -138,7 +136,7 @@ function getBeerEntryInDOM(beerObject) {
 
     const $cityColumn = document.createElement('div');
     $cityColumn.setAttribute('class', 'col-2');
-    $newBrewerCityRow.appendChild($cityColumn);
+    $brewerCityRow.appendChild($cityColumn);
 
     const $cityText = document.createElement('p');
     const $cityHeading = document.createElement('span');
@@ -183,32 +181,34 @@ function getDropdownMenuInDOM() {
     while ($dropdownMenu.firstChild) {
       $dropdownMenu.removeChild($dropdownMenu.firstChild);
     }
+    getDropdownOptionsInDOM();
+  } else {
+    $dropdownMenu = document.createElement('div');
+    $dropdownMenu.className = 'dropdown-menu';
+    getDropdownOptionsInDOM();
+  }
+  return $dropdownMenu;
+}
+
+function getDropdownOptionsInDOM() {
+  if (matches[0] === undefined) {
+    const $tryAgainText = document.createElement('p');
+    $tryAgainText.textContent = 'No matches found.';
+    $dropdownMenu.appendChild($tryAgainText);
+  } else {
     for (let i = 0; i < 3; i++) {
       if (matches[i] !== undefined) {
-        var $newOption = document.createElement('p');
+        const $newOption = document.createElement('p');
         $newOption.textContent = matches[i].name;
         $dropdownMenu.appendChild($newOption);
         $newOption.addEventListener('click', getBreweryData);
       }
     }
-  } else {
-    $dropdownMenu = document.createElement('div');
-    $dropdownMenu.className = 'dropdown-menu';
-    for (let x = 0; x < 3; x++) {
-      if (matches[x] !== undefined) {
-        $newOption = document.createElement('p');
-        $newOption.textContent = matches[x].name;
-        $dropdownMenu.appendChild($newOption);
-        $newOption.addEventListener('click', getBreweryData);
-      }
-    }
   }
-  return $dropdownMenu;
 }
 
 function getBreweryMatches() {
   const xhr = new XMLHttpRequest();
-
   xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
