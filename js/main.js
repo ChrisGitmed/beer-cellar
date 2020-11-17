@@ -9,6 +9,7 @@ var $form = document.querySelector('form');
 var $dropdownMenu;
 var matches = [];
 var breweryData;
+var xhr;
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
@@ -191,7 +192,11 @@ function getDropdownMenuInDOM() {
 }
 
 function getDropdownOptionsInDOM() {
-  if (matches[0] === undefined) {
+  if (xhr.status !== 200) {
+    const $badAPIRequestText = document.createElement('p');
+    $badAPIRequestText.textContent = 'Bad API Request.';
+    $dropdownMenu.appendChild($badAPIRequestText);
+  } else if (matches[0] === undefined) {
     const $tryAgainText = document.createElement('p');
     $tryAgainText.textContent = 'No matches found.';
     $dropdownMenu.appendChild($tryAgainText);
@@ -208,9 +213,14 @@ function getDropdownOptionsInDOM() {
 }
 
 function getBreweryMatches() {
-  const xhr = new XMLHttpRequest();
+  xhr = new XMLHttpRequest();
   xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
   xhr.responseType = 'json';
+  xhr.addEventListener('error', function () {
+    $searchButton.appendChild(getDropdownMenuInDOM());
+    $dropdownMenu = document.querySelector('.dropdown-menu');
+    $dropdownMenu.className = 'dropdown-menu show';
+  });
   xhr.addEventListener('load', function () {
     for (let i = 0; i < 3; i++) {
       matches[i] = (xhr.response[i]);
