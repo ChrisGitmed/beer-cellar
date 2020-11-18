@@ -1,15 +1,25 @@
 # Beer Cellar
 
-A dynamic HTML, CSS, and JavaScript app designed and built by myself to maintain a digital inventory of my beer collection.
+A dynamic JavaScript application designed and built by me to maintain a digital inventory of my beer collection.
 
 Utilizes AJAX to retrieve brewery data from the OpenBreweryDB API and use the response to create a polished dropdown menu.
 
-### Feature List
-* User can add beer to their 'cellar'
+### Technologies Used
+* HTML5
+* CSS3
+* JavaScript
+* AJAX
+
+### Features
+* Users can add beer to their 'cellar'
 * Users can view a gallery of their 'cellar'
-* User can add notes to their entries.
-* User can add brewery data about their beers by just selecting the brewery name from an easy search feature.
-* User can delete beers from their 'cellar'
+* Users can add notes to their entries.
+* Users can add brewery data about their beers by just selecting the brewery name from an easy search feature.
+* Users can delete beers from their 'cellar'
+
+### Preview
+![Image of app preview]
+(images/beer-callar-preview.png)
 
 ### Planned Additions
 * User can cancel an active addition into the 'cellar'.
