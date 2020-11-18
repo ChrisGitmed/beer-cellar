@@ -18,9 +18,9 @@ $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
   $loadMenu.className = 'dropdown-menu show';
-  const $loadText = document.createElement('p');
-  $loadText.textContent = 'test';
-  $loadMenu.appendChild($loadText);
+  const $loader = document.createElement('div');
+  $loader.className = 'loader margin-auto extra-margin';
+  $loadMenu.appendChild($loader);
   $searchButton.appendChild($loadMenu);
 
   if (event.target.tagName === 'BUTTON') {

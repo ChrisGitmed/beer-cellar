@@ -41,6 +41,10 @@
   text-align: center;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .extra-margin {
   margin: 2rem;
 }
