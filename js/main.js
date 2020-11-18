@@ -24,7 +24,6 @@ $searchButton.addEventListener('click', function (event) {
       $loader.className = 'loader margin-auto extra-margin';
       $loadMenu.appendChild($loader);
       $searchButton.appendChild($loadMenu);
-
       getBreweryMatches();
     }
   }
