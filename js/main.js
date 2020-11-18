@@ -7,14 +7,22 @@ var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
 var $dropdownMenu;
+var $loadMenu = document.createElement('div');
 var matches = [];
 var breweryData;
+var xhr;
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
+  $loadMenu.className = 'dropdown-menu show';
+  const $loader = document.createElement('div');
+  $loader.className = 'loader margin-auto extra-margin';
+  $loadMenu.appendChild($loader);
+  $searchButton.appendChild($loadMenu);
+
   if (event.target.tagName === 'BUTTON') {
     if ($breweryInput.value.length > 0) {
       getBreweryMatches();
@@ -154,6 +162,7 @@ function getBeerEntryInDOM(beerObject) {
     $websiteText.setAttribute('class', 'yellow-text');
     $websiteText.textContent = 'Website: ';
     $webLink.setAttribute('href', beerObject.brewery.website_url);
+    $webLink.setAttribute('target', '_blank');
     $webLink.textContent = beerObject.brewery.website_url;
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);
@@ -191,7 +200,11 @@ function getDropdownMenuInDOM() {
 }
 
 function getDropdownOptionsInDOM() {
-  if (matches[0] === undefined) {
+  if (xhr.status !== 200) {
+    const $badAPIRequestText = document.createElement('p');
+    $badAPIRequestText.textContent = 'Bad API Request.';
+    $dropdownMenu.appendChild($badAPIRequestText);
+  } else if (matches[0] === undefined) {
     const $tryAgainText = document.createElement('p');
     $tryAgainText.textContent = 'No matches found.';
     $dropdownMenu.appendChild($tryAgainText);
@@ -208,18 +221,27 @@ function getDropdownOptionsInDOM() {
 }
 
 function getBreweryMatches() {
-  const xhr = new XMLHttpRequest();
+  xhr = new XMLHttpRequest();
   xhr.open('get', 'https://api.openbrewerydb.org/breweries?by_name=' + $breweryInput.value);
   xhr.responseType = 'json';
+  xhr.addEventListener('error', function () {
+    createDropdown();
+  });
   xhr.addEventListener('load', function () {
     for (let i = 0; i < 3; i++) {
       matches[i] = (xhr.response[i]);
     }
-    $searchButton.appendChild(getDropdownMenuInDOM());
-    $dropdownMenu = document.querySelector('.dropdown-menu');
-    $dropdownMenu.className = 'dropdown-menu show';
+    createDropdown();
   });
   xhr.send();
+}
+
+function createDropdown() {
+  $searchButton.removeChild($loadMenu);
+  $loadMenu.innerHTML = '';
+  $searchButton.appendChild(getDropdownMenuInDOM());
+  $dropdownMenu = document.querySelector('.dropdown-menu');
+  $dropdownMenu.className = 'dropdown-menu show';
 }
 
 function getBreweryData(event) {

@@ -5,7 +5,7 @@
 .container {
   max-width: 575px;
   margin: 0 auto;
-  padding: 0 1.5rem 1rem 1.5rem;
+  padding: 0 0 1rem 0;
 }
 
 .row {
@@ -41,6 +41,18 @@
   text-align: center;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .extra-margin {
   margin: 2rem;
+}
+
+@supports (max-width: 1200px) {
+  @media screen and (min-width: 576px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
 }

@@ -122,6 +122,20 @@ textarea {
   border-radius: 5px;
 }
 
+.loader {
+  border: 16px solid #333533;
+  border-top: 16px solid #f5cb5c;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .show {
   display: block;
 }
