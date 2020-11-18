@@ -22,12 +22,12 @@ a {
   transition: 0.25s;
 }
 
-a:hover {
-  color: #f5cb5c;
+a,
+button {
+  cursor: pointer;
 }
 
-header {
-  background-color: #333533;
+a:hover {
   color: #f5cb5c;
 }
 
@@ -43,6 +43,11 @@ button:hover {
 }
 
 span {
+  color: #f5cb5c;
+}
+
+header {
+  background-color: #333533;
   color: #f5cb5c;
 }
 

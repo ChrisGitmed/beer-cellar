@@ -31,8 +31,10 @@ $searchButton.addEventListener('click', function (event) {
 
 window.addEventListener('click', function (event) {
   if ($viewNewEntry.className !== 'hidden') {
-    if (event.target !== $dropdownMenu) {
-      $dropdownMenu.className = 'dropdown-menu';
+    if ($dropdownMenu !== undefined) {
+      if (event.target !== $dropdownMenu) {
+        $dropdownMenu.className = 'dropdown-menu';
+      }
     }
   }
 });
