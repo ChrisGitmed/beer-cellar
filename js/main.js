@@ -17,14 +17,14 @@ $bigNewButton.addEventListener('click', openNewEntryView);
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
-  $loadMenu.className = 'dropdown-menu show';
-  const $loader = document.createElement('div');
-  $loader.className = 'loader margin-auto extra-margin';
-  $loadMenu.appendChild($loader);
-  $searchButton.appendChild($loadMenu);
-
   if (event.target.tagName === 'BUTTON') {
     if ($breweryInput.value.length > 0) {
+      $loadMenu.className = 'dropdown-menu show';
+      const $loader = document.createElement('div');
+      $loader.className = 'loader margin-auto extra-margin';
+      $loadMenu.appendChild($loader);
+      $searchButton.appendChild($loadMenu);
+
       getBreweryMatches();
     }
   }
