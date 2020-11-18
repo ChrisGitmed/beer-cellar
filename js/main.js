@@ -7,6 +7,7 @@ var $viewNewEntry = document.querySelector('#new-entry-view');
 var $viewEntries = document.querySelector('#entries-view');
 var $form = document.querySelector('form');
 var $dropdownMenu;
+var $loadMenu = document.createElement('div');
 var matches = [];
 var breweryData;
 var xhr;
@@ -16,6 +17,12 @@ $bigNewButton.addEventListener('click', openNewEntryView);
 $smallNewButton.addEventListener('click', openNewEntryView);
 
 $searchButton.addEventListener('click', function (event) {
+  $loadMenu.className = 'dropdown-menu show';
+  const $loadText = document.createElement('p');
+  $loadText.textContent = 'test';
+  $loadMenu.appendChild($loadText);
+  $searchButton.appendChild($loadMenu);
+
   if (event.target.tagName === 'BUTTON') {
     if ($breweryInput.value.length > 0) {
       getBreweryMatches();
@@ -229,6 +236,8 @@ function getBreweryMatches() {
 }
 
 function createDropdown() {
+  $searchButton.removeChild($loadMenu);
+  $loadMenu.innerHTML = '';
   $searchButton.appendChild(getDropdownMenuInDOM());
   $dropdownMenu = document.querySelector('.dropdown-menu');
   $dropdownMenu.className = 'dropdown-menu show';
