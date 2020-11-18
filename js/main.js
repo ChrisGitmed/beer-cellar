@@ -162,6 +162,7 @@ function getBeerEntryInDOM(beerObject) {
     $websiteText.setAttribute('class', 'yellow-text');
     $websiteText.textContent = 'Website: ';
     $webLink.setAttribute('href', beerObject.brewery.website_url);
+    $webLink.setAttribute('target', '_blank');
     $webLink.textContent = beerObject.brewery.website_url;
     $websiteText.appendChild($webLink);
     $websiteRow.appendChild($websiteText);
