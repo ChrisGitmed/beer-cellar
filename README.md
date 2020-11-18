@@ -18,9 +18,8 @@ Utilizes AJAX to retrieve brewery data from the OpenBreweryDB API and use the re
 * Users can delete beers from their 'cellar'
 
 ### Preview
-![Image of app preview]
-(images/beer-callar-preview.png)
-
+![Image of preview]
+(images/beer-cellar-preview.png)
 ### Planned Additions
 * User can cancel an active addition into the 'cellar'.
 * User can edit their 'cellar' entries.
