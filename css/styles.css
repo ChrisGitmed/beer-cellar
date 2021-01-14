@@ -46,13 +46,26 @@ span {
   color: #f5cb5c;
 }
 
-header {
+nav {
   background-color: #333533;
   color: #f5cb5c;
+  padding: 0 1rem;
 }
 
 textarea {
   resize: none;
+}
+
+#home-text {
+  font-size: 0.8rem;
+  color: white;
+  transition: 0.2s;
+}
+
+#home-text:hover {
+  color: #f5cb5c;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .placeholder-text {

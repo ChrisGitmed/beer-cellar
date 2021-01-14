@@ -1,3 +1,4 @@
+const $navHomeText = document.querySelector('#home-text');
 var $bigNewButton = document.querySelector('#big-new-button');
 var $smallNewButton = document.querySelector('#small-new-button');
 var $searchButton = document.querySelector('.drop-button');
@@ -11,6 +12,8 @@ var $loadMenu = document.createElement('div');
 var matches = [];
 var breweryData;
 var xhr;
+
+$navHomeText.addEventListener('click', openHomeView);
 
 $bigNewButton.addEventListener('click', openNewEntryView);
 
