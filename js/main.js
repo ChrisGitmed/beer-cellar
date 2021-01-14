@@ -112,9 +112,8 @@ function getBeerEntryInDOM(beerObject) {
       }
     }
     $newEntryRow.remove();
-    openHomeView();
     localStorage.setItem('beer-cellar', JSON.stringify(data));
-    // openHomeView()
+    openHomeView();
   });
   $deleteButtonRow.appendChild($deleteButton);
 
