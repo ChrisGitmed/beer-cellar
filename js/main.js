@@ -82,9 +82,11 @@ function openHomeView() {
   if (data.beers.length > 0) {
     $viewEntries.className = '';
     $viewNewEntry.className = 'hidden';
+    $smallNewButton.className = 'small-button extra-margin';
   } else {
     $viewHomeEmpty.className = '';
     $viewNewEntry.className = 'hidden';
+    $smallNewButton.className = 'hidden';
   }
 }
 
@@ -110,7 +112,9 @@ function getBeerEntryInDOM(beerObject) {
       }
     }
     $newEntryRow.remove();
+    openHomeView();
     localStorage.setItem('beer-cellar', JSON.stringify(data));
+    // openHomeView()
   });
   $deleteButtonRow.appendChild($deleteButton);
 
@@ -203,7 +207,7 @@ function getDropdownMenuInDOM() {
 function getDropdownOptionsInDOM() {
   if (xhr.status !== 200) {
     const $badAPIRequestText = document.createElement('p');
-    $badAPIRequestText.textContent = 'Bad API Request.';
+    $badAPIRequestText.textContent = 'Could not contact the server, please try again later.';
     $dropdownMenu.appendChild($badAPIRequestText);
   } else if (matches[0] === undefined) {
     const $tryAgainText = document.createElement('p');
