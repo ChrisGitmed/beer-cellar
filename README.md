@@ -18,5 +18,4 @@ Utilizes AJAX to retrieve brewery data from the OpenBreweryDB API.
 * Users can add brewery data about their beers.
 
 ### Preview
-![Image of preview](images/beer-cellar-preview-v2.png)
-
+![Image of preview](images/beer-cellar-dome.gif)
